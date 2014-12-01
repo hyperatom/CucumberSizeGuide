@@ -1,0 +1,77 @@
+<!DOCTYPE html ng-app="CucumberReporter">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7 ng-app="CucumberReporter""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8 ng-app="CucumberReporter""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9 ng-app="CucumberReporter""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="CucumberReporter"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    
+    <body>
+        <div ng-controller="ReportCtrl">
+
+            <h2>Cucumber Size Guide Report</h2>
+
+            <p>Results for presence of size guide button and sizes table for the top specified number of products in category specified in the feature file.</p>
+
+            <h3>Button Not Visible</h3>
+
+            <p>Products which did not have a size guide button present on the PDP.</p>
+
+            <div class="panel panel-danger" ng-if="category.urls.length > 0" ng-repeat="category in buttonVisibilityErrorUrls track by $index">
+
+                <div class="panel-heading">
+                    {{ category.name }}
+                    <a data-toggle="collapse" data-target="#btn-vis-{{ $index }}" href="javascript:void(0)">
+                        <span class="glyphicon glyphicon-minus pull-right"></span>
+                    </a>
+                </div>
+                <div id="btn-vis-{{ $index }}" class="panel-body panel-collapse collapse">
+                    <ul ng-repeat="url in category.urls">
+                        <li>
+                            <a href="{{ url }}" target="_blank">{{ url }}</a>
+                        </li>
+                    </ul>
+                </div> <!-- /Panel Body -->
+            </div> <!-- /Panel -->
+
+
+            <h3>Size Guide Not Displaying</h3>
+
+            <p>Products which had a visible size guide button, but did not have a table containing sizes present.</p>
+
+            <div class="panel panel-danger" ng-if="category.urls.length > 0" ng-repeat="category in sizeGuideDisplayErrorUrls track by $index">
+
+                <div class="panel-heading">
+                    {{ category.name }}
+                    <a data-toggle="collapse" data-target="#guide-vis-{{ $index }}" href="javascript:void(0)">
+                        <span class="glyphicon glyphicon-minus pull-right"></span>
+                    </a>
+                </div>
+                <div id="guide-vis-{{ $index }}" class="panel-body panel-collapse collapse">
+                    <ul ng-repeat="url in category.urls">
+                        <li>
+                            <a href="{{ url }}" target="_blank">{{ url }}</a>
+                        </li>
+                    </ul>
+                </div> <!-- /Panel Body -->
+            </div> <!-- /Panel -->
+        <div>
+
+        <script src="js/vendor/jquery-1.11.1.min.js"></script>
+        <script src="js/vendor/lodash.min.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>
