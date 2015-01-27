@@ -1,9 +1,12 @@
 angular.module('CucumberReporter', []);
 
-angular.module('CucumberReporter').controller('ReportCtrl', [
-	'$scope', '$http', '$filter', 'ErrorExtractor',
+angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', '$filter', 'ErrorExtractor',
 
 	function($scope, $http, $filter, ErrorExtractor) {
+
+        $scope.generated = {
+            on: ''
+        };
 
 		$scope.errors = {
 			buttonVisibility: [],
@@ -11,15 +14,22 @@ angular.module('CucumberReporter').controller('ReportCtrl', [
 		};
 
 		(function init() {
-			$http.get('report.json').then(function(reportData) {
-				var errorObject = extractErrorObject(reportData.data);
-				setScopeErrors(errorObject);				
-			});
+            setErrors($scope.errors);
+            setGeneratedDate($scope.generated);
 		})();
 
-		function setScopeErrors(errorObject) {
-			$scope.errors.buttonVisibility = errorObject.buttonVisibility;
-			$scope.errors.tableVisibility  = errorObject.tableVisibility;
+		function setErrors(errorObject) {
+		    $http.get('report.json').then(function(reportData) {
+                var extractedErrors = extractErrorObject(reportData.data);
+                errorObject.buttonVisibility = extractedErrors.buttonVisibility;
+                errorObject.tableVisibility  = extractedErrors.tableVisibility;
+            });
+		}
+
+		function setGeneratedDate(dateObject) {
+		    $http.get('generated.json').then(function(dateData) {
+		        dateObject.on = dateData.data;
+		    });
 		}
 
 		function forEachFailedStep(features, callback) {
