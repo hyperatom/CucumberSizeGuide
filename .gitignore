@@ -1,2 +1,4 @@
 target/
 .idea/
+web/generated.json
+web/report.json
