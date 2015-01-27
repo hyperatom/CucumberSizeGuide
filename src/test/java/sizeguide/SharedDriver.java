@@ -1,11 +1,9 @@
 package sizeguide;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.apache.commons.logging.LogFactory;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,7 +13,6 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import java.io.File;
 import java.util.logging.Level;
 
 /**
@@ -39,7 +36,7 @@ import java.util.logging.Level;
  * </p>
  */
 public class SharedDriver extends EventFiringWebDriver {
-    private static final WebDriver REAL_DRIVER = new HtmlUnitDriver();
+    private static final WebDriver REAL_DRIVER;
     private static final Thread CLOSE_THREAD = new Thread() {
         @Override
         public void run() {
@@ -51,6 +48,12 @@ public class SharedDriver extends EventFiringWebDriver {
         LogFactory.getFactory().setAttribute("org.apache.commons.logging.Log","org.apache.commons.logging.impl.NoOpLog");
         java.util.logging.Logger.getLogger("com.gargoylesoftware.htmlunit").setLevel(Level.OFF);
         java.util.logging.Logger.getLogger("org.apache.commons.httpclient").setLevel(Level.OFF);
+
+        if (Config.IS_SELENIUM_HEADLESS) {
+            REAL_DRIVER = new HtmlUnitDriver();
+        } else {
+            REAL_DRIVER = new ChromeDriver();
+        }
 
         Runtime.getRuntime().addShutdownHook(CLOSE_THREAD);
     }

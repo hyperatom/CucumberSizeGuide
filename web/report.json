@@ -1,0 +1,300 @@
+[
+  {
+    "id": "as-an-online-shopper,-i-want-to-view-the-size-guide-for-the-item-i-am-looking-at-so-that-i-can-see-if-it-will-fit-me-properly.",
+    "description": "",
+    "name": "As an online shopper, I want to view the size guide for the item I am looking at so that I can see if it will fit me properly.",
+    "keyword": "Feature",
+    "line": 1,
+    "elements": [
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 27000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "id": "as-an-online-shopper,-i-want-to-view-the-size-guide-for-the-item-i-am-looking-at-so-that-i-can-see-if-it-will-fit-me-properly.;size-guide-visibility-on-3-bestselling-products-for-each-top-level-category.;;2",
+        "before": [
+          {
+            "result": {
+              "duration": 969364000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "pdp_sizeguide_steps.setUp()"
+            }
+          },
+          {
+            "result": {
+              "duration": 82000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.deleteAllCookies()"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Size guide visibility on 3 bestselling products for each top level category.",
+        "keyword": "Scenario Outline",
+        "line": 11,
+        "steps": [
+          {
+            "result": {
+              "duration": 1761501000,
+              "status": "passed"
+            },
+            "name": "I visit the \"All Boys\" PLP page using \"l/kids/all-boys\" and view the top 3 best sellers",
+            "keyword": "Given ",
+            "line": 5,
+            "match": {
+              "arguments": [
+                {
+                  "val": "All Boys",
+                  "offset": 13
+                },
+                {
+                  "val": "l/kids/all-boys",
+                  "offset": 39
+                },
+                {
+                  "val": "3",
+                  "offset": 73
+                }
+              ],
+              "location": "pdp_sizeguide_steps.i_visit_the_PLP_page_using_and_view_the_top_best_sellers(String,String,int)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 11433101000,
+              "status": "passed"
+            },
+            "name": "I visit the PDP page of each product and click the size guide button",
+            "keyword": "When ",
+            "line": 6,
+            "match": {
+              "location": "pdp_sizeguide_steps.i_visit_the_PDP_page_of_each_product_and_click_the_size_guide_button()"
+            }
+          },
+          {
+            "result": {
+              "duration": 3364000,
+              "status": "failed",
+              "error_message": "java.lang.Exception: {\"buttonVisibilityErrors\":[\"http://www.marksandspencer.com/outstanding-value-unisex-pure-cotton-jumper-with-stay-new/p/p21169706\",\"http://www.marksandspencer.com/5-pairs-of-freshfeet-cotton-rich-school-socks/p/p22158979\"],\"tableVisibilityErrors\":[]}\n\tat sizeguide.pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear(pdp_sizeguide_steps.java:61)\n\tat ✽.Then the size guide button should be visible and the size guide view should appear.(sizeguide/pdp_sizeguide.feature:7)\n"
+            },
+            "name": "the size guide button should be visible and the size guide view should appear.",
+            "keyword": "Then ",
+            "line": 7,
+            "match": {
+              "location": "pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear()"
+            }
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 11000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "id": "as-an-online-shopper,-i-want-to-view-the-size-guide-for-the-item-i-am-looking-at-so-that-i-can-see-if-it-will-fit-me-properly.;size-guide-visibility-on-3-bestselling-products-for-each-top-level-category.;;3",
+        "before": [
+          {
+            "result": {
+              "duration": 406000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "pdp_sizeguide_steps.setUp()"
+            }
+          },
+          {
+            "result": {
+              "duration": 19000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.deleteAllCookies()"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Size guide visibility on 3 bestselling products for each top level category.",
+        "keyword": "Scenario Outline",
+        "line": 12,
+        "steps": [
+          {
+            "result": {
+              "duration": 191574000,
+              "status": "passed"
+            },
+            "name": "I visit the \"All Girls\" PLP page using \"l/kids/all-girls\" and view the top 3 best sellers",
+            "keyword": "Given ",
+            "line": 5,
+            "match": {
+              "arguments": [
+                {
+                  "val": "All Girls",
+                  "offset": 13
+                },
+                {
+                  "val": "l/kids/all-girls",
+                  "offset": 40
+                },
+                {
+                  "val": "3",
+                  "offset": 75
+                }
+              ],
+              "location": "pdp_sizeguide_steps.i_visit_the_PLP_page_using_and_view_the_top_best_sellers(String,String,int)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 6079561000,
+              "status": "passed"
+            },
+            "name": "I visit the PDP page of each product and click the size guide button",
+            "keyword": "When ",
+            "line": 6,
+            "match": {
+              "location": "pdp_sizeguide_steps.i_visit_the_PDP_page_of_each_product_and_click_the_size_guide_button()"
+            }
+          },
+          {
+            "result": {
+              "duration": 411000,
+              "status": "failed",
+              "error_message": "java.lang.Exception: {\"buttonVisibilityErrors\":[\"http://www.marksandspencer.com/3-pairs-of-bodysensor-school-tights/p/p22235865\"],\"tableVisibilityErrors\":[]}\n\tat sizeguide.pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear(pdp_sizeguide_steps.java:61)\n\tat ✽.Then the size guide button should be visible and the size guide view should appear.(sizeguide/pdp_sizeguide.feature:7)\n"
+            },
+            "name": "the size guide button should be visible and the size guide view should appear.",
+            "keyword": "Then ",
+            "line": 7,
+            "match": {
+              "location": "pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear()"
+            }
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "after": [
+          {
+            "result": {
+              "duration": 11000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.embedScreenshot(Scenario)"
+            }
+          }
+        ],
+        "id": "as-an-online-shopper,-i-want-to-view-the-size-guide-for-the-item-i-am-looking-at-so-that-i-can-see-if-it-will-fit-me-properly.;size-guide-visibility-on-3-bestselling-products-for-each-top-level-category.;;4",
+        "before": [
+          {
+            "result": {
+              "duration": 410000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "pdp_sizeguide_steps.setUp()"
+            }
+          },
+          {
+            "result": {
+              "duration": 18000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "SharedDriver.deleteAllCookies()"
+            }
+          }
+        ],
+        "description": "",
+        "name": "Size guide visibility on 3 bestselling products for each top level category.",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "steps": [
+          {
+            "result": {
+              "duration": 147320000,
+              "status": "passed"
+            },
+            "name": "I visit the \"Boys School Uniform\" PLP page using \"l/kids/school-uniform/all-boys-school-uniform\" and view the top 3 best sellers",
+            "keyword": "Given ",
+            "line": 5,
+            "match": {
+              "arguments": [
+                {
+                  "val": "Boys School Uniform",
+                  "offset": 13
+                },
+                {
+                  "val": "l/kids/school-uniform/all-boys-school-uniform",
+                  "offset": 50
+                },
+                {
+                  "val": "3",
+                  "offset": 114
+                }
+              ],
+              "location": "pdp_sizeguide_steps.i_visit_the_PLP_page_using_and_view_the_top_best_sellers(String,String,int)"
+            },
+            "matchedColumns": [
+              0,
+              1
+            ]
+          },
+          {
+            "result": {
+              "duration": 5696577000,
+              "status": "passed"
+            },
+            "name": "I visit the PDP page of each product and click the size guide button",
+            "keyword": "When ",
+            "line": 6,
+            "match": {
+              "location": "pdp_sizeguide_steps.i_visit_the_PDP_page_of_each_product_and_click_the_size_guide_button()"
+            }
+          },
+          {
+            "result": {
+              "duration": 395000,
+              "status": "failed",
+              "error_message": "java.lang.Exception: {\"buttonVisibilityErrors\":[\"http://www.marksandspencer.com/2-pack-boys-flat-front-crease-resistant-trousers-with-stormwear/p/p22308333\"],\"tableVisibilityErrors\":[]}\n\tat sizeguide.pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear(pdp_sizeguide_steps.java:61)\n\tat ✽.Then the size guide button should be visible and the size guide view should appear.(sizeguide/pdp_sizeguide.feature:7)\n"
+            },
+            "name": "the size guide button should be visible and the size guide view should appear.",
+            "keyword": "Then ",
+            "line": 7,
+            "match": {
+              "location": "pdp_sizeguide_steps.the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear()"
+            }
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "uri": "sizeguide/pdp_sizeguide.feature"
+  }
+]

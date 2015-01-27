@@ -5,8 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-//@CucumberOptions(format = { "pretty", "html:target/cucumber/html-report" })
-@CucumberOptions(format = { "json:target/cucumber/report.json" })
+@CucumberOptions(format = { "json:" + Config.REPORT_FILE })
 public class TestRunner {
 
 }
