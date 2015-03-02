@@ -44,11 +44,13 @@ public class pdp_sizeguide_steps {
         for (int i=0; i<totalPlpProducts; i++) {
             clickProduct(i);
 
-            if (finder.isSizeGuideButtonPresent()) {
-                clickSizeGuideButton();
-                checkTableVisibility();
-            } else {
-                logButtonVisibilityError();
+            if (!finder.isProductOneSized()) {
+                if (finder.isSizeGuideButtonPresent()) {
+                    clickSizeGuideButton();
+                    checkTableVisibility();
+                } else {
+                    logButtonVisibilityError();
+                }
             }
 
             navigateTo(currentPlpUrl);

@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class ElementFinder {
 
     WebDriver browser;
@@ -17,6 +19,12 @@ public class ElementFinder {
     private static final String SIZE_GUIDE_BUTTON_SELECTOR
             = ".size-info .size-guide-trigger a.panel";
 
+    private static final String ONE_SIZE_LABEL_SELECTOR
+            = ".product-detail-page .information .selected-unit";
+
+    private static final String ONE_SIZE_LABEL_TEXT
+            = "One Size";
+
     public ElementFinder(WebDriver browser) {
         this.browser = browser;
     }
@@ -27,6 +35,24 @@ public class ElementFinder {
 
     public Boolean isSizeGuideButtonPresent() {
         return browser.findElements(By.cssSelector(SIZE_GUIDE_BUTTON_SELECTOR)).size() > 0;
+    }
+
+    public Boolean isProductOneSized() {
+        List<WebElement> elems = browser.findElements(By.cssSelector(ONE_SIZE_LABEL_SELECTOR));
+
+        return elems.size() > 0 && containsOneSizeLabel(elems);
+    }
+
+    private Boolean containsOneSizeLabel(List<WebElement> elems) {
+        Boolean oneSize = false;
+
+        for (WebElement elem : elems) {
+            if (elem.getText().contains(ONE_SIZE_LABEL_TEXT)) {
+                oneSize = true;
+            }
+        }
+
+        return oneSize;
     }
 
     public Boolean isSizeGuidePresent() {
