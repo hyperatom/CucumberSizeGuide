@@ -1,7 +1,7 @@
 package sizeguide;
 
 public class Config {
-    public static final Boolean IS_SELENIUM_HEADLESS = false;
+    public static final Boolean IS_SELENIUM_HEADLESS = true;
     public static final Boolean IS_NEW_SIZE_GUIDES   = true;
 
     public static final String BASE_URL    = "http://www.marksandspencer.com/";
