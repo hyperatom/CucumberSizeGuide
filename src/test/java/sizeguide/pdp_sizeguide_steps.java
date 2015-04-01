@@ -1,6 +1,7 @@
 package sizeguide;
 
 import com.google.gson.Gson;
+import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,6 +9,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 public class pdp_sizeguide_steps {
@@ -16,17 +18,28 @@ public class pdp_sizeguide_steps {
     private ElementFinder   finder;
     private SizeGuideErrors errors;
     private String          currentPlpUrl;
+    private String          testCategory;
 
     public pdp_sizeguide_steps(SharedDriver driver) {
-        this.browser = driver;
-        this.finder  = new ElementFinder(driver);
+
+        this.browser  = driver;
+        this.finder   = new ElementFinder(driver);
+
         this.browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         this.browser.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
     }
 
+    private void setTestCategory(Collection<String> sourceTags) {
+        testCategory = ((String) sourceTags.toArray()[0]).substring(1);
+    }
+
+    @Before
+    public void beforeScenario(Scenario scenario) {
+        setTestCategory(scenario.getSourceTagNames());
+    }
+
     @Before
     public void setUp() {
-        FileWriter.createGenerationDateFile();
         errors = new SizeGuideErrors();
     }
 
@@ -44,7 +57,7 @@ public class pdp_sizeguide_steps {
         for (int i=0; i<totalPlpProducts; i++) {
             clickProduct(i);
 
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
             if (!finder.isProductOneSized()) {
                 if (finder.isSizeGuideButtonPresent()) {
@@ -62,6 +75,8 @@ public class pdp_sizeguide_steps {
     @Then("^the size guide button should be visible and the size guide view should appear\\.$")
     public void the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear() throws Exception {
         if (sizeGuidesHaveErrors()) {
+            FileWriter.createGenerationDateFile();
+            TestInfo.setTestResults(testCategory, errors);
             throw new Exception(new Gson().toJson(errors));
         }
     }
@@ -104,7 +119,6 @@ public class pdp_sizeguide_steps {
     }
 
     private void clickSizeGuideButton() throws Throwable {
-        //Thread.sleep(8000);
         WebElement sizeGuideBtn = finder.getSizeGuideButton();
 
         if (isSeleniumHeadless()) {

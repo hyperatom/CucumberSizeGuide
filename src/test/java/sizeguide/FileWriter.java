@@ -12,25 +12,33 @@ public class FileWriter {
         String fileName = "generated.json";
 
         try {
-            createFile(filePath, fileName);
-            writeFile(filePath, fileName);
+            writeGenerationTimeFile(filePath + fileName);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private static void writeFile(String filePath, String fileName)
-            throws FileNotFoundException, UnsupportedEncodingException {
+    public static void writeFile(String filePath, String contents)
+            throws IOException
+    {
 
-        PrintWriter writer = new PrintWriter(filePath + fileName, "UTF-8");
-        writer.println(new Gson().toJson(new Date().getTime()));
+        createFile(filePath);
+
+        PrintWriter writer = new PrintWriter(filePath, "UTF-8");
+        writer.println(contents);
         writer.close();
     }
 
-    private static Boolean createFile(String filePath, String fileName)
-            throws IOException {
+    private static void writeGenerationTimeFile(String filePath)
+            throws IOException
+    {
+        writeFile(filePath, new Gson().toJson(new Date().getTime()));
+    }
 
-        File file = new File(filePath, fileName);
+    private static Boolean createFile(String filePath)
+            throws IOException
+    {
+        File file = new File(filePath);
         return file.createNewFile();
     }
 }

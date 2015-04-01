@@ -6,4 +6,5 @@ public class Config {
 
     public static final String BASE_URL    = "http://www.marksandspencer.com/";
     public static final String REPORT_FILE = "./web/report.json";
+    public static final String KIDS_REPORT_FILE = "./web/kids-report.json";
 }
