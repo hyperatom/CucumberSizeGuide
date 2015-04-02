@@ -5,22 +5,22 @@ import java.util.List;
 
 public class SizeGuideErrors {
 
-    private List<String> buttonVisibilityErrors = new ArrayList<String>();
-    private List<String> tableVisibilityErrors = new ArrayList<String>();
+    private List<Page> buttonVisibilityErrors = new ArrayList<Page>();
+    private List<Page> tableVisibilityErrors  = new ArrayList<Page>();
 
-    public List<String> getButtonVisibilityErrors() {
+    public List<Page> getButtonVisibilityErrors() {
         return this.buttonVisibilityErrors;
     }
 
-    public List<String> getTableVisibilityErrors() {
+    public List<Page> getTableVisibilityErrors() {
         return this.tableVisibilityErrors;
     }
 
-    public void addButtonVisibilityError(String url) {
-        this.buttonVisibilityErrors.add(url);
+    public void addButtonVisibilityError(String url, String description) {
+        this.buttonVisibilityErrors.add(new Page(url, description));
     }
 
-    public void addTableVisibilityError(String url) {
-        this.tableVisibilityErrors.add(url);
+    public void addTableVisibilityError(String url, String description) {
+        this.tableVisibilityErrors.add(new Page(url, description));
     }
 }

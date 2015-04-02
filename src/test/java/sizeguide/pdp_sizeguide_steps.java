@@ -19,13 +19,14 @@ public class pdp_sizeguide_steps {
     private SizeGuideErrors errors;
     private String          currentPlpUrl;
     private String          testCategory;
+    private String          testDescription;
 
     public pdp_sizeguide_steps(SharedDriver driver) {
 
         this.browser  = driver;
         this.finder   = new ElementFinder(driver);
 
-        this.browser.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        this.browser.manage().timeouts().implicitlyWait(5,   TimeUnit.SECONDS);
         this.browser.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
     }
 
@@ -33,19 +34,28 @@ public class pdp_sizeguide_steps {
         testCategory = ((String) sourceTags.toArray()[0]).substring(1);
     }
 
-    @Before
-    public void beforeScenario(Scenario scenario) {
-        setTestCategory(scenario.getSourceTagNames());
+
+    public String getTestDescription(String name, String urlTag, int topBestSellers) {
+
+        return "I visit the "       + name +
+               " PLP page using "   + urlTag +
+               " and view the top " + topBestSellers +
+               " best sellers";
     }
 
     @Before
-    public void setUp() {
-        errors = new SizeGuideErrors();
+    public void setUp(Scenario scenario) {
+
+        setTestCategory(scenario.getSourceTagNames());
+        errors = TestInfo.getTestResults(testCategory);
     }
 
     @Given("^I visit the \"(.*?)\" PLP page using \"(.*?)\" and view the top (\\d+) best sellers$")
     public void i_visit_the_PLP_page_using_and_view_the_top_best_sellers(String name, String urlTag, int topBestSellers) throws Throwable {
-        currentPlpUrl = UrlConstructor.constructPlpUrl(urlTag, topBestSellers);
+
+        testDescription = getTestDescription(name, urlTag, topBestSellers);
+        currentPlpUrl   = UrlConstructor.constructPlpUrl(urlTag, topBestSellers);
+
         navigateTo(currentPlpUrl);
     }
 
@@ -57,7 +67,7 @@ public class pdp_sizeguide_steps {
         for (int i=0; i<totalPlpProducts; i++) {
             clickProduct(i);
 
-            //Thread.sleep(3000);
+            Thread.sleep(3000);
 
             if (!finder.isProductOneSized()) {
                 if (finder.isSizeGuideButtonPresent()) {
@@ -74,9 +84,10 @@ public class pdp_sizeguide_steps {
 
     @Then("^the size guide button should be visible and the size guide view should appear\\.$")
     public void the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear() throws Exception {
+
+        TestInfo.setTestResults(testCategory, errors);
+
         if (sizeGuidesHaveErrors()) {
-            FileWriter.createGenerationDateFile();
-            TestInfo.setTestResults(testCategory, errors);
             throw new Exception(new Gson().toJson(errors));
         }
     }
@@ -86,12 +97,12 @@ public class pdp_sizeguide_steps {
     }
 
     private void logButtonVisibilityError() {
-        errors.addButtonVisibilityError(browser.getCurrentUrl());
+        errors.addButtonVisibilityError(browser.getCurrentUrl(), testDescription);
     }
 
     private void checkTableVisibility() {
         if (!isSizeGuideTableVisible()) {
-            errors.addTableVisibilityError(browser.getCurrentUrl());
+            errors.addTableVisibilityError(browser.getCurrentUrl(), testDescription);
         }
     }
 
@@ -141,7 +152,9 @@ public class pdp_sizeguide_steps {
     }
 
     private WebElement getProductListedAtIndex(int index) {
+
         WebElement product = browser.findElements(By.cssSelector("li[itemtype='http://schema.org/Product']")).get(index);
+
         return product.findElement(By.xpath(".//a[contains(@class, 'prodAnchor')]"));
     }
 

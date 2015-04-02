@@ -3,3 +3,5 @@ target/
 .idea/
 web/generated.json
 web/report.json
+web/women-report.json
+web/kids-report.json

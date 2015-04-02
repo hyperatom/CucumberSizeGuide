@@ -1,15 +1,19 @@
 package sizeguide;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class TestInfo {
 
-    private static String TEST_CATEGORY = "";
-
-    private static Map<String, SizeGuideErrors> TEST_RESULTS;
+    private static Map<String, SizeGuideErrors> TEST_RESULTS = new HashMap<String, SizeGuideErrors>();
 
 
     public static SizeGuideErrors getTestResults(String categoryName) {
+
+        if (TEST_RESULTS.get(categoryName) == null) {
+            setTestResults(categoryName, new SizeGuideErrors());
+        }
+
         return TEST_RESULTS.get(categoryName);
     }
 

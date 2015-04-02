@@ -4,12 +4,13 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
     @kids
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Kids BU.
 
-        Given I visit the <item> PLP page using <url> and view the top 3 best sellers
+        Given I visit the <item> PLP page using <url> and view the top 10 best sellers
         When I visit the PDP page of each product and click the size guide button
         Then the size guide button should be visible and the size guide view should appear.
 
         Examples:
             | item                       | url                                                     |
+            | "All Girls"                | "l/kids/all-girls"                                      |
             | "All Boys"                 | "l/kids/all-boys"                                       |
             | "Boys School Uniform"      | "l/kids/school-uniform/all-boys-school-uniform"         |
 
@@ -17,7 +18,7 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
     @women
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Womenswear BU.
 
-        Given I visit the <item> PLP page using <url> and view the top 3 best sellers
+        Given I visit the <item> PLP page using <url> and view the top 10 best sellers
         When I visit the PDP page of each product and click the size guide button
         Then the size guide button should be visible and the size guide view should appear.
 

@@ -8,11 +8,8 @@ import java.util.Date;
 public class FileWriter {
 
     public static void createGenerationDateFile() {
-        String filePath = "./web/";
-        String fileName = "generated.json";
-
         try {
-            writeGenerationTimeFile(filePath + fileName);
+            writeGenerationTimeFile(Config.GENERATED_DATE_FILE);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
