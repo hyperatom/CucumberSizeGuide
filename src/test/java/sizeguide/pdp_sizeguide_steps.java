@@ -10,6 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class pdp_sizeguide_steps {
@@ -17,7 +18,6 @@ public class pdp_sizeguide_steps {
     private WebDriver       browser;
     private ElementFinder   finder;
     private Category        errors;
-    private String          currentPlpUrl;
     private String          testCategory;
     private String          testDescription;
 
@@ -54,19 +54,21 @@ public class pdp_sizeguide_steps {
     @Given("^I visit the \"(.*?)\" PLP page using \"(.*?)\" and view the top (\\d+) best sellers$")
     public void i_visit_the_PLP_page_using_and_view_the_top_best_sellers(String name, String urlTag, int topBestSellers) throws Throwable {
 
+        String currentPlpUrl = UrlConstructor.constructPlpUrl(urlTag, topBestSellers);
         testDescription = getTestDescription(name, urlTag, topBestSellers);
-        currentPlpUrl   = UrlConstructor.constructPlpUrl(urlTag, topBestSellers);
 
         navigateTo(currentPlpUrl);
     }
 
     @When("^I visit the PDP page of each product and click the size guide button$")
     public void i_visit_the_PDP_page_of_each_product_and_click_the_size_guide_button() throws Throwable {
-        int totalPlpProducts = getNumberOfProductsListed();
+
+        List<String> productLinks = finder.getAllProductLinks();
 
         // For each of the PLP products listed
-        for (int i=0; i<totalPlpProducts; i++) {
-            clickProduct(i);
+        for (String link : productLinks) {
+
+            navigateTo(link);
 
             Thread.sleep(3000);
 
@@ -78,8 +80,6 @@ public class pdp_sizeguide_steps {
                     logButtonVisibilityError();
                 }
             }
-
-            navigateTo(currentPlpUrl);
         }
     }
 
@@ -97,6 +97,7 @@ public class pdp_sizeguide_steps {
 
     private void navigateTo(String url) {
         browser.get(url);
+        finder.setBrowser(browser);
     }
 
     private void logButtonVisibilityError() {
@@ -107,11 +108,6 @@ public class pdp_sizeguide_steps {
         if (!isSizeGuideTableVisible()) {
             errors.getCategoryErrors().addTableVisibilityError(browser.getCurrentUrl());
         }
-    }
-
-    private void clickProduct(int index) {
-        WebElement elem = getProductListedAtIndex(index);
-        elem.click();
     }
 
     private Boolean sizeGuidesHaveErrors() {
@@ -152,17 +148,6 @@ public class pdp_sizeguide_steps {
 
     private Boolean isSeleniumHeadless() {
         return Config.IS_SELENIUM_HEADLESS;
-    }
-
-    private WebElement getProductListedAtIndex(int index) {
-
-        WebElement product = browser.findElements(By.cssSelector("li[itemtype='http://schema.org/Product']")).get(index);
-
-        return product.findElement(By.xpath(".//a[contains(@class, 'prodAnchor')]"));
-    }
-
-    private int getNumberOfProductsListed() {
-        return browser.findElements(By.cssSelector("li[itemtype='http://schema.org/Product']")).size();
     }
 
     private void scrollToElement(WebElement element) {

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ElementFinder {
@@ -25,8 +26,30 @@ public class ElementFinder {
     private static final String ONE_SIZE_LABEL_TEXT
             = "One Size";
 
+    private static final String CSS_PRODUCT_SELECTOR
+            = "li[itemtype='http://schema.org/Product']";
+
+    private static final String XPATH_PRODUCT_LINK_SELECTOR
+            = ".//a[contains(@class, 'prodAnchor')][1]";
+
     public ElementFinder(WebDriver browser) {
         this.browser = browser;
+    }
+
+    public void setBrowser(WebDriver browser) {
+        this.browser = browser;
+    }
+
+    public List<String> getAllProductLinks() {
+
+        List<WebElement> products = browser.findElements(By.cssSelector(CSS_PRODUCT_SELECTOR));
+        List<String> links = new ArrayList<String>();
+
+        for (WebElement product : products) {
+            links.add(product.findElement(By.xpath(XPATH_PRODUCT_LINK_SELECTOR)).getAttribute("href"));
+        }
+
+        return links;
     }
 
     public WebElement getSizeGuideButton() {
