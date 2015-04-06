@@ -24,55 +24,46 @@
 
             <p>Generated: {{ generated.on | date:'medium' }}</p>
 
-            <p>The following report displays the results of checks for a size guide button and size table for the top 100 best selling products in each sub-category of the kids BU.</p>
+            <p>The following report displays the results of checks for a size guide button and size table for the top 100 best selling products in each sub-category of chosen BU's.</p>
 
             <p>This is an automated user interface test and is executed against M&S.com each sunday at 12:00PM.</p>
 
             <p>For any information regarding this test, please contact Adam Barrell (<a href="mailto:adam.barrell@marks-and-spencer.com">adam.barrell@marks-and-spencer.com</a>)</p>
 
+            <ul class="nav nav-tabs nav-justified">
+                <li role="presentation" ng-class="{ active: isShowing('kids') }">
+                    <a ng-click="show('kids')" href="javascript:void(0)">Kidswear</a>
+                </li>
+                <li role="presentation" ng-class="{ active: isShowing('women') }">
+                    <a ng-click="show('women')" href="javascript:void(0)">Womenswear</a>
+                </li>
+            </ul>
+
             <h3>Button Not Visible</h3>
 
             <p>PDP's that did not have a size guide button present on the PDP.</p>
 
-            <div class="panel panel-danger" ng-if="category.urls.length > 0" ng-repeat="category in errors.buttonVisibility track by $index">
+            <button-errors errors="errors.women" category="women"
+                           ng-show="isShowing('women')">
+            </button-errors>
 
-                <div class="panel-heading">
-                    {{ category.name }}
-                    <a data-toggle="collapse" data-target="#btn-vis-{{ $index }}" href="javascript:void(0)">
-                        <span class="glyphicon glyphicon-minus pull-right"></span>
-                    </a>
-                </div>
-                <div id="btn-vis-{{ $index }}" class="panel-body panel-collapse collapse">
-                    <ul ng-repeat="url in category.urls">
-                        <li>
-                            <a href="{{ url }}" target="_blank">{{ url }}</a>
-                        </li>
-                    </ul>
-                </div> <!-- /Panel Body -->
-            </div> <!-- /Panel -->
-
+            <button-errors errors="errors.kids" category="kids"
+                           ng-show="isShowing('kids')">
+            </button-errors>
 
             <h3>Size Guide Not Displaying</h3>
 
             <p>PDP's that had a visible size guide button, but did not have a sizes table present.</p>
 
-            <div class="panel panel-danger" ng-if="category.urls.length > 0" ng-repeat="category in errors.tableVisibility track by $index">
+            <table-errors errors="errors.women" category="women"
+                           ng-show="isShowing('women')">
+            </table-errors>
 
-                <div class="panel-heading">
-                    {{ category.name }}
-                    <a data-toggle="collapse" data-target="#guide-vis-{{ $index }}" href="javascript:void(0)">
-                        <span class="glyphicon glyphicon-minus pull-right"></span>
-                    </a>
-                </div>
-                <div id="guide-vis-{{ $index }}" class="panel-body panel-collapse collapse">
-                    <ul ng-repeat="url in category.urls">
-                        <li>
-                            <a href="{{ url }}" target="_blank">{{ url }}</a>
-                        </li>
-                    </ul>
-                </div> <!-- /Panel Body -->
-            </div> <!-- /Panel -->
-        <div>
+            <table-errors errors="errors.kids" category="kids"
+                           ng-show="isShowing('kids')">
+            </table-errors>
+
+        </div>
 
         <script src="js/vendor/jquery-1.11.1.min.js"></script>
         <script src="js/vendor/lodash.min.js"></script>

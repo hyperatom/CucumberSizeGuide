@@ -1,0 +1,25 @@
+<div class="panel panel-danger"
+     ng-repeat="error in errors track by $index" ng-show="hasButtonVisibilityErrors(error.categoryErrors)">
+
+    <div class="panel-heading"
+         ng-show="hasButtonVisibilityErrors(error.categoryErrors)">
+
+        {{ error.testDescription }}
+
+        <a data-toggle="collapse" data-target="#{{ category }}-btn-vis-{{ $index }}" href="javascript:void(0)">
+            <span class="glyphicon glyphicon-minus pull-right"></span>
+        </a>
+
+    </div>
+
+    <div id="{{ category }}-btn-vis-{{ $index }}" class="panel-body panel-collapse collapse"
+         ng-show="hasButtonVisibilityErrors(error.categoryErrors)">
+
+        <ul ng-repeat="url in error.categoryErrors.buttonVisibilityErrors">
+            <li>
+                <a href="{{ url }}" target="_blank">{{ url }}</a>
+            </li>
+        </ul>
+    </div>
+
+</div>

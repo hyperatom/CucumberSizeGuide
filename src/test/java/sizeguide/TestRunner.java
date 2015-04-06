@@ -30,6 +30,14 @@ public class TestRunner {
     }
 
     private static String getReportJson(String categoryName) {
+        System.out.println("Getting " + categoryName + "...");
+
+        try {
+            System.out.println(new Gson().toJson(TestInfo.getTestResults(categoryName)));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         return new Gson().toJson(TestInfo.getTestResults(categoryName));
     }
 }

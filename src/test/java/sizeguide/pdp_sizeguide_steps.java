@@ -16,12 +16,14 @@ public class pdp_sizeguide_steps {
 
     private WebDriver       browser;
     private ElementFinder   finder;
-    private SizeGuideErrors errors;
+    private Category        errors;
     private String          currentPlpUrl;
     private String          testCategory;
     private String          testDescription;
 
     public pdp_sizeguide_steps(SharedDriver driver) {
+
+        errors = new Category();
 
         this.browser  = driver;
         this.finder   = new ElementFinder(driver);
@@ -47,7 +49,6 @@ public class pdp_sizeguide_steps {
     public void setUp(Scenario scenario) {
 
         setTestCategory(scenario.getSourceTagNames());
-        errors = TestInfo.getTestResults(testCategory);
     }
 
     @Given("^I visit the \"(.*?)\" PLP page using \"(.*?)\" and view the top (\\d+) best sellers$")
@@ -67,7 +68,7 @@ public class pdp_sizeguide_steps {
         for (int i=0; i<totalPlpProducts; i++) {
             clickProduct(i);
 
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
 
             if (!finder.isProductOneSized()) {
                 if (finder.isSizeGuideButtonPresent()) {
@@ -85,6 +86,8 @@ public class pdp_sizeguide_steps {
     @Then("^the size guide button should be visible and the size guide view should appear\\.$")
     public void the_size_guide_button_should_be_visible_and_the_size_guide_view_should_appear() throws Exception {
 
+        errors.setTestDescription(testDescription);
+
         TestInfo.setTestResults(testCategory, errors);
 
         if (sizeGuidesHaveErrors()) {
@@ -97,12 +100,12 @@ public class pdp_sizeguide_steps {
     }
 
     private void logButtonVisibilityError() {
-        errors.addButtonVisibilityError(browser.getCurrentUrl(), testDescription);
+        errors.getCategoryErrors().addButtonVisibilityError(browser.getCurrentUrl());
     }
 
     private void checkTableVisibility() {
         if (!isSizeGuideTableVisible()) {
-            errors.addTableVisibilityError(browser.getCurrentUrl(), testDescription);
+            errors.getCategoryErrors().addTableVisibilityError(browser.getCurrentUrl());
         }
     }
 
@@ -112,8 +115,8 @@ public class pdp_sizeguide_steps {
     }
 
     private Boolean sizeGuidesHaveErrors() {
-        return errors.getTableVisibilityErrors().size() > 0 ||
-               errors.getButtonVisibilityErrors().size() > 0;
+        return errors.getCategoryErrors().getTableVisibilityErrors().size() > 0 ||
+                errors.getCategoryErrors().getButtonVisibilityErrors().size() > 0;
     }
 
     private Boolean isSizeGuideTableVisible () {

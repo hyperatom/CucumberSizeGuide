@@ -1,16 +1,28 @@
 angular.module('CucumberReporter', []);
 
-angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', '$filter', 'ErrorExtractor',
+angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', '$filter',
 
-	function($scope, $http, $filter, ErrorExtractor) {
+	function($scope, $http, $filter) {
 
         $scope.generated = {
             on: ''
         };
 
+        $scope.showing = {
+            category: 'kids'
+        };
+
 		$scope.errors = {
-			buttonVisibility: [],
-			tableVisibility:  []
+		    kids: {},
+		    women: {}
+		};
+
+		$scope.isShowing = function(categoryName) {
+		    return $scope.showing.category === categoryName;
+		};
+
+		$scope.show = function(categoryName) {
+		    $scope.showing.category = categoryName;
 		};
 
 		(function init() {
@@ -19,10 +31,13 @@ angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', 
 		})();
 
 		function setErrors(errorObject) {
-		    $http.get('report.json').then(function(reportData) {
-                var extractedErrors = extractErrorObject(reportData.data);
-                errorObject.buttonVisibility = extractedErrors.buttonVisibility;
-                errorObject.tableVisibility  = extractedErrors.tableVisibility;
+		    $http.get('kids-report.json').then(function(response) {
+                $scope.errors.kids = response.data;
+                console.log(response.data);
+            });
+
+            $http.get('women-report.json').then(function(response) {
+                $scope.errors.women = response.data;
             });
 		}
 
@@ -31,81 +46,38 @@ angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', 
 		        dateObject.on = dateData.data;
 		    });
 		}
-
-		function forEachFailedStep(features, callback) {
-			angular.forEach(features, function(feature) {
-				angular.forEach(feature.elements, function(element) {
-					angular.forEach(element.steps, function(step) {
-						step.result.status === 'failed' ? callback(element, step) : null;
-					});
-				});
-			});
-		}
-
-		function initErrorCollection(collection, element) {
-			if (!collection[element.line]) {
-				collection[element.line] = {
-					name: element.steps[0].name,
-					urls: []
-				};
-			}
-		}
-
-		function addErrorsToCollection(collection, errors, element) {
-			if(errors) {
-				angular.forEach(errors, function(error) {
-					collection[element.line].urls.push(error);
-				});
-			}
-		}
-
-		function extractErrorObject(features) {
-			var errorObject = {
-				buttonVisibility: [],
-				tableVisibility:  []
-			};
-
-			forEachFailedStep(features, function(element, step) {
-
-				initErrorCollection(errorObject.buttonVisibility, element);
-				initErrorCollection(errorObject.tableVisibility, element);
-
-				var exceptionMessage = step.result.error_message;
-				
-				var tableVisibilityErrors  = ErrorExtractor.tableErrorsToArray(exceptionMessage);
-				var buttonVisibilityErrors = ErrorExtractor.buttonErrorsToArray(exceptionMessage);
-
-				addErrorsToCollection(errorObject.buttonVisibility, buttonVisibilityErrors, element);
-				addErrorsToCollection(errorObject.tableVisibility,  tableVisibilityErrors, element);
-			});
-
-			return errorObject;
-		}
 }]);
 
-angular.module('CucumberReporter').factory('ErrorExtractor', function() {
+angular.module('CucumberReporter').directive('tableErrors', function() {
 
-	function extractExceptionContent(thrownErrorMessage) {
-		return thrownErrorMessage.match(/java.lang.Exception: {(.*)}/);
-	}
+    return {
+        templateUrl: 'tableErrors.html',
+        scope: {
+            errors: '=',
+            category: '@'
+        },
+        link: function(scope) {
 
-	function errorStringToObject(thrownErrorMessage) {
-		var content = extractExceptionContent(thrownErrorMessage);
-		return JSON.parse('{' + content[1] + '}');
-	}
+            scope.hasTableVisibilityErrors = function(errors) {
+                return errors.tableVisibilityErrors.length > 0;
+            };
+        }
+    };
+});
 
-	function buttonErrorsToArray(thrownErrorMessage) {
-		return errorStringToObject(thrownErrorMessage)
-					.buttonVisibilityErrors;
-	}
+angular.module('CucumberReporter').directive('buttonErrors', function() {
 
-	function tableErrorsToArray(thrownErrorMessage) {
-		return errorStringToObject(thrownErrorMessage)
-					.tableVisibilityErrors;
-	}
+    return {
+        templateUrl: 'buttonErrors.html',
+        scope: {
+            errors: '=',
+            category: '@'
+        },
+        link: function(scope) {
 
-	return {
-		buttonErrorsToArray: buttonErrorsToArray,
-		tableErrorsToArray:  tableErrorsToArray
-	}
+            scope.hasButtonVisibilityErrors = function(errors) {
+                return errors.buttonVisibilityErrors.length > 0;
+            };
+        }
+    };
 });
