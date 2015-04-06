@@ -2,7 +2,7 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
 
 
     @kids
-    Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Kids BU.
+    Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Kidswear BU.
 
         Given I visit the <item> PLP page using <url> and view the top 10 best sellers
         When I visit the PDP page of each product and click the size guide button
