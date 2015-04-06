@@ -35,7 +35,7 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
         Then the size guide button should be visible and the size guide view should appear.
 
         Examples:
-          | item                        | url                                                    |
+          | item                        | url                                                      |
           | "Cardigans"                 | "l/women/cardigans"                                      |
           | "Coats & Jackets"           | "l/women/coats-and-jackets"                              |
           | "Dresses"                   | "l/women/dresses"                                        |
@@ -60,14 +60,6 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
           | "Jewellery"                 | "l/women/jewellery"                                      |
           | "Watches"                   | "l/women/jewellery/watches"                              |
           | "All Shoes & Sandals"       | "l/women/shoes-and-boots"                                |
-          | "Autograph"                 | "l/women/autograph"                                      |
-          | "Best Of British"           | "l/women/best-of-british/best-of-british"                |
-          | "Classic"                   | "l/women/classic"                                        |
-          | "Indigo"                    | "l/women/indigo-collection"                              |
-          | "Limited Edition"           | "l/women/limited-edition"                                |
-          | "M&S Collection"            | "l/women/mands-collection"                               |
-          | "Per Una"                   | "l/women/per-una"                                        |
-          | "Speziale"                  | "l/women/per-una/speziale"                               |
 
     @men
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Menswear BU.
@@ -77,7 +69,31 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
       Then the size guide button should be visible and the size guide view should appear.
 
       Examples:
-        | item                        | url                                                      |
-        | "Cardigans"                 | "l/women/cardigans"                                      |
-        | "Coats and Jackets"         | "l/women/coats-and-jackets"                              |
-
+        | item                        | url                                 |
+        | "Big & Tall"                | "l/men/big-and-tall"                |
+        | "Blazers & Smart Jackets"   | "l/men/blazers-and-smart-jackets"   |
+        | "Cashmere"                  | "l/men/cashmere"                    |
+        | "Casual Shirts"             | "l/men/casual-shirts"               |
+        | "Casual Trousers"           | "l/men/casual-trousers"             |
+        | "Coats & Casual Jackets"    | "l/men/coats-and-casual-jackets"    |
+        | "Fleece"                    | "l/men/fleece"                      |
+        | "Formal Shirts"             | "l/men/formal-shirts"               |
+        | "Formal Trousers"           | "l/men/formal-trousers"             |
+        | "Jeans"                     | "l/men/jeans"                       |
+        | "Jumpers & Cardigans"       | "l/men/jumpers-and-cardigans"       |
+        | "Linen Shop"                | "l/men/linen-shop"                  |
+        | "Made to Measure Shirts"    | "s/men/made-to-measure-shirts"      |
+        | "Pyjamas & Dressing Gowns"  | "l/men/nightwear-and-pyjamas"       |
+        | "Shorts"                    | "l/men/shorts"                      |
+        | "Socks"                     | "l/men/socks-539501"                |
+        | "Sports & Active"           | "l/men/sports-and-active"           |
+        | "Swimwear"                  | "l/men/swimwear"                    |
+        | "Thinsulate"                | "l/men/thinsulate"                  |
+        | "Ties"                      | "l/men/ties"                        |
+        | "Tops, T-Shirts & Polos"    | "l/men/tops-tshirts-and-polos"      |
+        | "Underwear"                 | "l/men/underwear"                   |
+        | "Thermal Underwear"         | "l/men/underwear/thermal-underwear" |
+        | "Waistcoats"                | "l/men/waistcoats"                  |
+        | "All Suits"                 | "s/men/suits"                       |
+        | "All Shoes & Boots"         | "l/men/all-shoes-and-boots"         |
+        | "All Accessories"           | "l/men/all-accessories"             |
