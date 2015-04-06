@@ -26,11 +26,8 @@ public class ElementFinder {
     private static final String ONE_SIZE_LABEL_TEXT
             = "One Size";
 
-    private static final String CSS_PRODUCT_SELECTOR
-            = "li[itemtype='http://schema.org/Product']";
-
-    private static final String XPATH_PRODUCT_LINK_SELECTOR
-            = ".//a[contains(@class, 'prodAnchor')][1]";
+    private static final String CSS_PRODUCT_LINK_SELECTOR
+            = "h3 .prodAnchor";
 
     public ElementFinder(WebDriver browser) {
         this.browser = browser;
@@ -42,11 +39,17 @@ public class ElementFinder {
 
     public List<String> getAllProductLinks() {
 
-        List<WebElement> products = browser.findElements(By.cssSelector(CSS_PRODUCT_SELECTOR));
+        List<WebElement> productAnchors = browser.findElements(
+                By.cssSelector(CSS_PRODUCT_LINK_SELECTOR));
+
         List<String> links = new ArrayList<String>();
 
-        for (WebElement product : products) {
-            links.add(product.findElement(By.xpath(XPATH_PRODUCT_LINK_SELECTOR)).getAttribute("href"));
+        for (WebElement anchor : productAnchors) {
+            try {
+                links.add(anchor.getAttribute("href"));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
 
         return links;
