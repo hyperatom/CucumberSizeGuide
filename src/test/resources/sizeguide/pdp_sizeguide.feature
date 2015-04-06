@@ -4,7 +4,7 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
     @kids
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Kidswear BU.
 
-        Given I visit the <item> PLP page using <url> and view the top 10 best sellers
+        Given I visit the <item> PLP page using <url> and view the top 100 best sellers
         When I visit the PDP page of each product and click the size guide button
         Then the size guide button should be visible and the size guide view should appear.
 
@@ -16,21 +16,20 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
           | "Girls School Uniform"     | "l/kids/school-uniform/all-girls-school-uniform"        |
           | "All Baby Boys"            | "l/kids/baby-up-to-2-yrs/all-baby-boys"                 |
           | "All Baby Girls"           | "l/kids/baby-up-to-2-yrs/all-baby-girls"                |
-          | "Newborn"                  | "l/kids/baby-up-to-2-yrs/newborn"                       |
-          | "Unisex"                   | "l/kids/baby-up-to-2-yrs/unisex-up-to-2-yrs"            |
+          | "Newborn"                  | "l/kids/baby-up-to-2-yrs/essentials/newborn-essentials" |
           | "Baby Gifts"               | "l/kids/baby-up-to-2-yrs/baby-gifts"                    |
-          | "Bath"                     | "l/kids/baby-up-to-2-yrs/bath"                          |
+          | "Bath"                     | "l/kids/baby-up-to-2-yrs/baby-bath"                     |
           | "Feed"                     | "l/kids/baby-up-to-2-yrs/feed"                          |
-          | "Mum To Be"                | "l/kids/baby-up-to-2-yrs/mumtobe"                       |
+          | "Mum To Be"                | "l/kids/baby-up-to-2-yrs/maternity-and-nursing"         |
           | "Play"                     | "l/kids/baby-up-to-2-yrs/play"                          |
           | "Sleep"                    | "l/kids/baby-up-to-2-yrs/sleep"                         |
-          | "Travel"                   | "l/kids/baby-up-to-2-yrs/travel"
+          | "Travel"                   | "l/kids/baby-up-to-2-yrs/travel"                        |
 
 
     @women
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Womenswear BU.
 
-        Given I visit the <item> PLP page using <url> and view the top 10 best sellers
+        Given I visit the <item> PLP page using <url> and view the top 100 best sellers
         When I visit the PDP page of each product and click the size guide button
         Then the size guide button should be visible and the size guide view should appear.
 
@@ -64,7 +63,7 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
     @men
     Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Menswear BU.
 
-      Given I visit the <item> PLP page using <url> and view the top 10 best sellers
+      Given I visit the <item> PLP page using <url> and view the top 100 best sellers
       When I visit the PDP page of each product and click the size guide button
       Then the size guide button should be visible and the size guide view should appear.
 
@@ -82,7 +81,6 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
         | "Jeans"                     | "l/men/jeans"                       |
         | "Jumpers & Cardigans"       | "l/men/jumpers-and-cardigans"       |
         | "Linen Shop"                | "l/men/linen-shop"                  |
-        | "Made to Measure Shirts"    | "s/men/made-to-measure-shirts"      |
         | "Pyjamas & Dressing Gowns"  | "l/men/nightwear-and-pyjamas"       |
         | "Shorts"                    | "l/men/shorts"                      |
         | "Socks"                     | "l/men/socks-539501"                |
@@ -94,6 +92,6 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
         | "Underwear"                 | "l/men/underwear"                   |
         | "Thermal Underwear"         | "l/men/underwear/thermal-underwear" |
         | "Waistcoats"                | "l/men/waistcoats"                  |
-        | "All Suits"                 | "s/men/suits"                       |
+        | "All Suits"                 | "l/men/mens-suits"                  |
         | "All Shoes & Boots"         | "l/men/all-shoes-and-boots"         |
         | "All Accessories"           | "l/men/all-accessories"             |
