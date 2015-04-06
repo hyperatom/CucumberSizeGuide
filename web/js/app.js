@@ -14,7 +14,8 @@ angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', 
 
 		$scope.errors = {
 		    kids: {},
-		    women: {}
+		    women: {},
+		    men: {}
 		};
 
 		$scope.isShowing = function(categoryName) {
@@ -33,11 +34,14 @@ angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', 
 		function setErrors(errorObject) {
 		    $http.get('kids-report.json').then(function(response) {
                 $scope.errors.kids = response.data;
-                console.log(response.data);
             });
 
             $http.get('women-report.json').then(function(response) {
                 $scope.errors.women = response.data;
+            });
+
+            $http.get('men-report.json').then(function(response) {
+                $scope.errors.men = response.data;
             });
 		}
 

@@ -19,6 +19,7 @@ public class TestRunner {
 
         generateReportJson(Config.KIDS_REPORT_FILE,  getReportJson("kids"));
         generateReportJson(Config.WOMEN_REPORT_FILE, getReportJson("women"));
+        generateReportJson(Config.MEN_REPORT_FILE,   getReportJson("men"));
     }
 
     private static void generateReportJson(String filePath, String contents) {
@@ -30,14 +31,6 @@ public class TestRunner {
     }
 
     private static String getReportJson(String categoryName) {
-        System.out.println("Getting " + categoryName + "...");
-
-        try {
-            System.out.println(new Gson().toJson(TestInfo.getTestResults(categoryName)));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
         return new Gson().toJson(TestInfo.getTestResults(categoryName));
     }
 }

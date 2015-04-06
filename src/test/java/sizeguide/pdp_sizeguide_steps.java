@@ -68,7 +68,7 @@ public class pdp_sizeguide_steps {
         for (int i=0; i<totalPlpProducts; i++) {
             clickProduct(i);
 
-            //Thread.sleep(3000);
+            Thread.sleep(3000);
 
             if (!finder.isProductOneSized()) {
                 if (finder.isSizeGuideButtonPresent()) {

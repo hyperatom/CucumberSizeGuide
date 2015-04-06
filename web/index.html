@@ -37,30 +37,41 @@
                 <li role="presentation" ng-class="{ active: isShowing('women') }">
                     <a ng-click="show('women')" href="javascript:void(0)">Womenswear</a>
                 </li>
+                <li role="presentation" ng-class="{ active: isShowing('men') }">
+                    <a ng-click="show('men')" href="javascript:void(0)">Menswear</a>
+                </li>
             </ul>
 
             <h3>Button Not Visible</h3>
 
             <p>PDP's that did not have a size guide button present on the PDP.</p>
 
+            <button-errors errors="errors.kids" category="kids"
+                           ng-show="isShowing('kids')">
+            </button-errors>
+
             <button-errors errors="errors.women" category="women"
                            ng-show="isShowing('women')">
             </button-errors>
 
-            <button-errors errors="errors.kids" category="kids"
-                           ng-show="isShowing('kids')">
+            <button-errors errors="errors.men" category="men"
+                           ng-show="isShowing('men')">
             </button-errors>
 
             <h3>Size Guide Not Displaying</h3>
 
             <p>PDP's that had a visible size guide button, but did not have a sizes table present.</p>
 
-            <table-errors errors="errors.women" category="women"
-                           ng-show="isShowing('women')">
-            </table-errors>
-
             <table-errors errors="errors.kids" category="kids"
                            ng-show="isShowing('kids')">
+            </table-errors>
+
+            <table-errors errors="errors.women" category="women"
+                          ng-show="isShowing('women')">
+            </table-errors>
+
+            <table-errors errors="errors.men" category="men"
+                          ng-show="isShowing('men')">
             </table-errors>
 
         </div>

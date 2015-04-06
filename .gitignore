@@ -4,4 +4,5 @@ target/
 web/generated.json
 web/report.json
 web/women-report.json
+web/men-report.json
 web/kids-report.json
