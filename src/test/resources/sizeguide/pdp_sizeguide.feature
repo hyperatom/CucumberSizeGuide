@@ -9,21 +9,21 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
         Then the size guide button should be visible and the size guide view should appear.
 
         Examples:
-          | item                       | url                                                     |
-          | "All Boys"                 | "l/kids/all-boys"                                       |
-          | "All Girls"                | "l/kids/all-girls"                                      |
-          | "Boys School Uniform"      | "l/kids/school-uniform/all-boys-school-uniform"         |
-          | "Girls School Uniform"     | "l/kids/school-uniform/all-girls-school-uniform"        |
-          | "All Baby Boys"            | "l/kids/baby-up-to-2-yrs/all-baby-boys"                 |
-          | "All Baby Girls"           | "l/kids/baby-up-to-2-yrs/all-baby-girls"                |
-          | "Newborn"                  | "l/kids/baby-up-to-2-yrs/essentials/newborn-essentials" |
-          | "Baby Gifts"               | "l/kids/baby-up-to-2-yrs/baby-gifts"                    |
-          | "Bath"                     | "l/kids/baby-up-to-2-yrs/baby-bath"                     |
-          | "Feed"                     | "l/kids/baby-up-to-2-yrs/feed"                          |
-          | "Mum To Be"                | "l/kids/baby-up-to-2-yrs/maternity-and-nursing"         |
-          | "Play"                     | "l/kids/baby-up-to-2-yrs/play"                          |
-          | "Sleep"                    | "l/kids/baby-up-to-2-yrs/sleep"                         |
-          | "Travel"                   | "l/kids/baby-up-to-2-yrs/travel"                        |
+          | item                       | url                                                           |
+          | "All Boys"                 | "l/kids/all-boys"                                             |
+          | "All Girls"                | "l/kids/all-girls"                                            |
+          | "Boys School Uniform"      | "l/kids/school-uniform/all-boys-school-uniform"               |
+          | "Girls School Uniform"     | "l/kids/school-uniform/all-girls-school-uniform"              |
+          | "All Baby Boys"            | "l/kids/baby-up-to-2-yrs/all-baby-boys"                       |
+          | "All Baby Girls"           | "l/kids/baby-up-to-2-yrs/all-baby-girls"                      |
+          | "Newborn"                  | "l/kids/baby-up-to-2-yrs/baby-essentials/newborn-essentials"  |
+          | "Baby Gifts"               | "l/kids/baby-up-to-2-yrs/baby-gifts"                          |
+          | "Bath"                     | "l/kids/baby-up-to-2-yrs/baby-bath"                           |
+          | "Feed"                     | "l/kids/baby-up-to-2-yrs/feed"                                |
+          | "Mum To Be"                | "l/kids/baby-up-to-2-yrs/maternity-and-nursing"               |
+          | "Play"                     | "l/kids/baby-up-to-2-yrs/play"                                |
+          | "Sleep"                    | "l/kids/baby-up-to-2-yrs/baby-sleep"                          |
+          | "Travel"                   | "l/kids/baby-up-to-2-yrs/baby-travel-bags/baby-changing-bags" |
 
 
     @women
