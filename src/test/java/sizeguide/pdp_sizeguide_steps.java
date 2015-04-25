@@ -70,7 +70,7 @@ public class pdp_sizeguide_steps {
 
             navigateTo(link);
 
-            Thread.sleep(3000);
+            Thread.sleep(3500);
 
             if (!finder.isProductOneSized()) {
                 if (finder.isSizeGuideButtonPresent()) {
