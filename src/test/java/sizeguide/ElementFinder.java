@@ -29,12 +29,25 @@ public class ElementFinder {
     private static final String CSS_PRODUCT_LINK_SELECTOR
             = "h3 .prodAnchor";
 
+    private static final String CSS_PRODUCT_CODE_SELECTOR
+            = ".code";
+
     public ElementFinder(WebDriver browser) {
         this.browser = browser;
     }
 
     public void setBrowser(WebDriver browser) {
         this.browser = browser;
+    }
+
+    public String getProductCode() {
+        List<WebElement> codeElems = browser.findElements(By.cssSelector(CSS_PRODUCT_CODE_SELECTOR));
+
+        if (codeElems.size() == 0) {
+            return "N/A";
+        }
+
+        return codeElems.get(0).getText().trim();
     }
 
     public List<String> getAllProductLinks() {

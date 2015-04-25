@@ -5,22 +5,22 @@ import java.util.List;
 
 public class CategoryErrors {
 
-    private List<String> buttonVisibilityErrors = new ArrayList<String>();
-    private List<String> tableVisibilityErrors  = new ArrayList<String>();
+    private List<Product> buttonVisibilityErrors = new ArrayList<Product>();
+    private List<Product> tableVisibilityErrors  = new ArrayList<Product>();
 
-    public List<String> getButtonVisibilityErrors() {
+    public List<Product> getButtonVisibilityErrors() {
         return this.buttonVisibilityErrors;
     }
 
-    public List<String> getTableVisibilityErrors() {
+    public List<Product> getTableVisibilityErrors() {
         return this.tableVisibilityErrors;
     }
 
-    public void addButtonVisibilityError(String url) {
-        this.buttonVisibilityErrors.add(url);
+    public void addButtonVisibilityError(Product product) {
+        this.buttonVisibilityErrors.add(product);
     }
 
-    public void addTableVisibilityError(String url) {
-        this.tableVisibilityErrors.add(url);
+    public void addTableVisibilityError(Product product) {
+        this.tableVisibilityErrors.add(product);
     }
 }

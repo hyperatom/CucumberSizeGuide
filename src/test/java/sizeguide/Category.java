@@ -9,10 +9,6 @@ public class Category {
         return categoryErrors;
     }
 
-    public void setCategoryErrors(CategoryErrors categoryErrors) {
-        this.categoryErrors = categoryErrors;
-    }
-
     public String getTestDescription () {
         return testDescription;
     }

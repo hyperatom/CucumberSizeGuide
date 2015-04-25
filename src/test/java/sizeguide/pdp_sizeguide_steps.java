@@ -101,12 +101,18 @@ public class pdp_sizeguide_steps {
     }
 
     private void logButtonVisibilityError() {
-        errors.getCategoryErrors().addButtonVisibilityError(browser.getCurrentUrl());
+        Product product = new Product(browser.getCurrentUrl(), finder.getProductCode());
+        errors.getCategoryErrors().addButtonVisibilityError(product);
+    }
+
+    private void logTableVisibilityError() {
+        Product product = new Product(browser.getCurrentUrl(), finder.getProductCode());
+        errors.getCategoryErrors().addButtonVisibilityError(product);
     }
 
     private void checkTableVisibility() {
         if (!isSizeGuideTableVisible()) {
-            errors.getCategoryErrors().addTableVisibilityError(browser.getCurrentUrl());
+            logTableVisibilityError();
         }
     }
 
