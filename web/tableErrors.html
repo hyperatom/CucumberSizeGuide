@@ -14,11 +14,24 @@
     <div id="{{ category }}-tbl-vis-{{ $index }}" class="panel-body panel-collapse collapse"
          ng-show="hasTableVisibilityErrors(error.categoryErrors)">
 
-        <ul ng-repeat="url in error.categoryErrors.tableVisibilityErrors">
-            <li>
-                <a href="{{ url }}" target="_blank">{{ url }}</a>
-            </li>
-        </ul>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <td>T-Code</td>
+                    <td>URL</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="page in error.categoryErrors.tableVisibilityErrors">
+                    <td>
+                        <span ng-bind="page.code"></span>
+                    </td>
+                    <td>
+                        <a href="{{ page.url }}" target="_blank">{{ page.url }}</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
