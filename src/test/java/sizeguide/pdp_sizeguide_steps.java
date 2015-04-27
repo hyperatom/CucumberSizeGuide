@@ -107,7 +107,7 @@ public class pdp_sizeguide_steps {
 
     private void logTableVisibilityError() {
         Product product = new Product(browser.getCurrentUrl(), finder.getProductCode());
-        errors.getCategoryErrors().addButtonVisibilityError(product);
+        errors.getCategoryErrors().addTableVisibilityError(product);
     }
 
     private void checkTableVisibility() {
