@@ -18,7 +18,7 @@ public class ElementFinder {
             = "div.infopanel-position";
 
     private static final String SIZE_GUIDE_BUTTON_SELECTOR
-            = ".size-info .size-guide-trigger a.panel";
+            = ".size-info a.panel";
 
     private static final String ONE_SIZE_LABEL_SELECTOR
             = ".product-detail-page .information .selected-unit";
