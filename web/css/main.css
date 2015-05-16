@@ -53,3 +53,7 @@ sup, sub {
 sub {
   top: 0.4em;
 }
+
+.table-condensed {
+  font-size: 1em;
+}
