@@ -17,9 +17,10 @@ public class TestRunner {
 
         FileWriter.createGenerationDateFile();
 
-        generateReportJson(Config.KIDS_REPORT_FILE,  getReportJson("kids"));
-        generateReportJson(Config.WOMEN_REPORT_FILE, getReportJson("women"));
-        generateReportJson(Config.MEN_REPORT_FILE,   getReportJson("men"));
+        generateReportJson(Config.KIDS_REPORT_FILE,     getReportJson("kids"));
+        generateReportJson(Config.WOMEN_REPORT_FILE,    getReportJson("women"));
+        generateReportJson(Config.MEN_REPORT_FILE,      getReportJson("men"));
+        generateReportJson(Config.LINGERIE_REPORT_FILE, getReportJson("lingerie"));
     }
 
     private static void generateReportJson(String filePath, String contents) {

@@ -95,3 +95,31 @@ Feature: As an online shopper, I want to view the size guide for the item I am l
         | "All Suits"                 | "l/men/mens-suits"                  |
         | "All Shoes & Boots"         | "l/men/all-shoes-and-boots"         |
         | "All Accessories"           | "l/men/all-accessories"             |
+
+
+    @lingerie
+    Scenario Outline: Size guide visibility on 100 bestselling products for each top level category of the Lingerie BU.
+
+      Given I visit the <item> PLP page using <url> and view the top 100 best sellers
+      When I visit the PDP page of each product and click the size guide button
+      Then the size guide button should be visible and the size guide view should appear.
+
+      Examples:
+        | item                              | url                                          |
+        | "All Nightware"                   | "l/lingerie/all-nightwear"                   |
+        | "Bodies"                          | "l/lingerie/bodies"                          |
+        | "Knickers"                        | "l/lingerie/knickers"                        |
+        | "Shapewear"                       | "l/lingerie/shapewear"                       |
+        | "Slips"                           | "l/lingerie/slips"                           |
+        | "Socks"                           | "l/lingerie/socks"                           |
+        | "Tights"                          | "l/lingerie/tights"                          |
+        | "Thermals"                        | "l/lingerie/thermals"                        |
+        | "Vests and Camisoles"             | "l/lingerie/vests-and-camisoles"             |
+        | "Adored Collection"               | "l/lingerie/adored-lingerie-collection"      |
+        | "Autograph"                       | "l/lingerie/autograph-lingerie"              |
+        | "La Maison De Senteurs Nightwear" | "l/lingerie/la-maison-de-senteurs-nightwear" |
+        | "Limited Collection"              | "l/lingerie/limited-collection-lingerie"     |
+        | "Rosie for Autograph"             | "l/lingerie/rosie-for-autograph-lingerie"    |
+        | "Sexy Lingerie"                   | "l/lingerie/sexy-lingerie"                   |
+        | "Silk and Lace"                   | "l/lingerie/silk-and-lace-lingerie"          |
+        | "Sumptuously Soft"                | "l/lingerie/sumptuously-soft-lingerie"       |

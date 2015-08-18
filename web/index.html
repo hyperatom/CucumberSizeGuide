@@ -40,6 +40,9 @@
                 <li role="presentation" ng-class="{ active: isShowing('men') }">
                     <a ng-click="show('men')" href="javascript:void(0)">Menswear</a>
                 </li>
+                <li role="presentation" ng-class="{ active: isShowing('lingerie') }">
+                    <a ng-click="show('lingerie')" href="javascript:void(0)">Lingerie</a>
+                </li>
             </ul>
 
             <h3>Button Not Visible</h3>
@@ -58,6 +61,10 @@
                            ng-show="isShowing('men')">
             </button-errors>
 
+            <button-errors errors="errors.lingerie" category="lingerie"
+                           ng-show="isShowing('lingerie')">
+            </button-errors>
+
             <h3>Size Guide Not Displaying</h3>
 
             <p>PDP's that had a visible size guide button, but did not have a sizes table present.</p>
@@ -72,6 +79,10 @@
 
             <table-errors errors="errors.men" category="men"
                           ng-show="isShowing('men')">
+            </table-errors>
+
+            <table-errors errors="errors.lingerie" category="lingerie"
+                          ng-show="isShowing('lingerie')">
             </table-errors>
 
         </div>
