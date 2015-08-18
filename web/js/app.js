@@ -46,7 +46,7 @@ angular.module('CucumberReporter').controller('ReportCtrl', ['$scope', '$http', 
             });
 
             $http.get('lingerie-report.json').then(function(response) {
-                $scope.errors.men = response.data;
+                $scope.errors.lingerie = response.data;
             });
 		}
 
