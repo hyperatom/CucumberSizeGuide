@@ -5,3 +5,19 @@
   - apt: update_cache=yes
   - apt: name=openjdk-7-jdk
   - apt: name=maven
+  - apt: name=curl
+
+  - command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
+  - apt: name=nodejs
+
+  - command: npm install -g grunt-cli
+
+  - copy: src=../ dest=/var/www/SizeGuideTester owner=vagrant group=vagrant mode=0775
+
+  - command: chdir=/var/www/SizeGuideTester/web npm install
+
+  - name: 'Start grunt server'
+    command: chdir=/var/www/SizeGuideTester/web grunt --port 80
+    async: 1000
+    poll: 0
+    register: grunt_serve

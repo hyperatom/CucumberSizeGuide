@@ -1,3 +1,5 @@
+var argv = require('yargs').argv;
+
 module.exports = function(grunt) {
 
 	grunt.initConfig({
@@ -5,7 +7,7 @@ module.exports = function(grunt) {
 		
 		connect: {
 			report: {
-				port: 9090
+				port: argv.port || 9090
 			}
 		}
 	});
