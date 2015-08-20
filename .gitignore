@@ -1,6 +1,7 @@
 .DS_STORE
 target/
 .idea/
+npm-debug.log
 web/generated.json
 web/report.json
 web/women-report.json

@@ -1,0 +1,7 @@
+---
+- hosts: server
+  sudo: yes
+  tasks:
+  - apt: update_cache=yes
+  - apt: name=openjdk-7-jdk
+  - apt: name=maven
