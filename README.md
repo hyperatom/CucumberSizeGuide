@@ -44,7 +44,7 @@ An additional file (`generated.json`) is generated on completion of a test run a
 ### Front-End
 
 AngularJS is used to present the JSON reports provided by the back-end, in a meaningful way. The report view displays
-the results of the errors in tabs where each tag is a category e.g. men, women, kids, lingerie.
+the results of the errors in tabs where each is a category e.g. men, women, kids, lingerie.
 
 Each category contains two sets of errors, those where the size guide button was not present, and where the sizes
 table was not displayed. If a product page fails one of these tests, the page URL will be listed in the respective section.
