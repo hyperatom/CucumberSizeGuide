@@ -1,2 +1,9 @@
-[server]
+[servers]
+192.168.50.51
+52.19.199.136 ansible_ssh_user=ubuntu
+
+[prod]
+52.19.199.136
+
+[local]
 192.168.50.51
