@@ -14,16 +14,16 @@ only for technical queries.
 
 ## Getting Set Up
 
-Run the Ansible playbook located in `provisioning/playbook.yml` against an Ubuntu server to provision it
-with the dependencies required for this project.
+First add your public key to the `~/.ssh/authorized_hosts` file when logged in as the `ubuntu` user.
+
+Execute the following command from the root of this project to provision the server:
+`ansible-playbook -i provisioning/ansible_hosts provisioning/playbook.yml`
 
 Further modifications may be necessary such as the target host located in the `provisioning/ansible_hosts` file.
 
-Once provisioning is complete, the Node web server will begin hosting the AngularJS application which should be
-accessible on port 80 of the host.
-
 A Jenkins job should be responsible for logging into the host and executing the `mvn test` command from the root 
 of the project. This should be run as a timed job each Sunday so the reports will be ready for Monday.
+Another job will be responsible for building and deploying code to the server.
 
 ## Architecture
 
