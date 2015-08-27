@@ -1,12 +1,16 @@
 ---
 - hosts: prod
   sudo: yes
-  tasks:
-  - apt: update_cache=yes
-  - apt: name=openjdk-7-jdk
-  - apt: name=maven
-  - apt: name=curl
 
-  - command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
-  - apt: name=nodejs
-  - npm: name=grunt-cli global=yes
+  roles:
+    - ansible-jenkins
+
+  tasks:
+    - apt: update_cache=yes
+    - apt: name=openjdk-7-jdk
+    - apt: name=maven
+    - apt: name=curl
+
+    - command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
+    - apt: name=nodejs
+    - npm: name=grunt-cli global=yes

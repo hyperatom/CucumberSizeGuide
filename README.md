@@ -58,6 +58,10 @@ table was not displayed. If a product page fails one of these tests, the page UR
 * Node 0.12
 * AngularJS
 
+## Development Requirements
+
+Ansible 1.9 is required to provision the server.
+
 ## Server Requirements
 
 An Ubuntu server should be used to run this tool and should always be turned on since a constantly running

@@ -1,0 +1,8 @@
+--- 
+plugins:
+  - 'ldap'
+  - 'github'
+  - 'translation'
+  - 'preSCMbuildstep'
+port: 8080
+prefix: '/build'
