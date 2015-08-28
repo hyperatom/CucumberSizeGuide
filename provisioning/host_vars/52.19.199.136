@@ -4,5 +4,6 @@ plugins:
   - 'github'
   - 'translation'
   - 'preSCMbuildstep'
+  - 'copyartifact'
 port: 8080
 prefix: '/build'

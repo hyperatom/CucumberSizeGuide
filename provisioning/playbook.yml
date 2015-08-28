@@ -6,7 +6,11 @@
     - ansible-jenkins
 
   tasks:
+
+    - user: name=jenkins state=present groups="jenkins,sudo"
+
     - apt: update_cache=yes
+    - apt: name=libcap2-bin
     - apt: name=openjdk-7-jdk
     - apt: name=maven
     - apt: name=curl
@@ -14,3 +18,7 @@
     - command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
     - apt: name=nodejs
     - npm: name=grunt-cli global=yes
+
+    - command: setcap cap_net_bind_service=+ep /usr/bin/nodejs
+
+    - file: path=/var/www/SizeGuideTester state=directory owner=jenkins group=jenkins mode=0775 recurse=yes
