@@ -7,18 +7,24 @@
 
   tasks:
 
-    - user: name=jenkins state=present groups="jenkins,sudo"
+    - name: Assign jenkins user to the sudo group
+      user: name=jenkins state=present groups="jenkins,sudo"
 
-    - apt: update_cache=yes
-    - apt: name=libcap2-bin
-    - apt: name=openjdk-7-jdk
-    - apt: name=maven
-    - apt: name=curl
+    - name: Install server packages required by project
+      apt: update_cache=yes
+      apt: name=openjdk-7-jdk
+      apt: name=maven
+      apt: name=curl
 
-    - command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
-    - apt: name=nodejs
-    - npm: name=grunt-cli global=yes
+    - name: Install Node 0.12
+      command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
+      apt: name=nodejs
+      npm: name=grunt-cli global=yes
 
-    - command: setcap cap_net_bind_service=+ep /usr/bin/nodejs
+    - name: Ensure applications can be run without sudo password
+      apt: name=libcap2-bin
+      command: setcap cap_net_bind_service=+ep /usr/bin/nodejs
+      command: setcap cap_net_bind_service=+ep /usr/bin/pgrep
 
-    - file: path=/var/www/SizeGuideTester state=directory owner=jenkins group=jenkins mode=0775 recurse=yes
+    - name: Create directory for the source code to live
+      file: path=/var/www/SizeGuideTester state=directory owner=jenkins group=jenkins mode=0775 recurse=yes
