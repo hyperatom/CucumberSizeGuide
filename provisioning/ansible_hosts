@@ -1,9 +1,3 @@
 [servers]
-192.168.50.51
-52.19.199.136 ansible_ssh_user=ubuntu
-
-[prod]
-52.19.199.136
-
-[local]
-192.168.50.51
+local         ansible_ssh_host=192.168.50.51    ansible_ssh_user=vagrant
+production    ansible_ssh_host=52.19.199.136    ansible_ssh_user=ubuntu

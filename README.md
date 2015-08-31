@@ -14,16 +14,36 @@ only for technical queries.
 
 ## Getting Set Up
 
-First add your public key to the `~/.ssh/authorized_hosts` file when logged in as the `ubuntu` user.
+### Local Development
+
+If you are developing locally, you can install Java 7 and Maven on your developer machine or use Vagrant and Ansible
+to spin up a virtual machine to host the project.
+
+Simply run `vagrant up` from the command line at the root of this project.
+
+To start the Node webserver, ssh into the vagrant box `vagrant ssh`, change to the project directory
+`cd /var/www/SizeGuideTester/web` and run the `grunt` command. 
+
+You should now be able to access the web application by visiting [192.168.50.51:9090](http://192.168.50.51:9090) 
+from your web browser.
+
+Start the tests by running `mvn test` from the root of the project within the vagrant box.
+
+### Remote Deployment
+
+First set up an Ubuntu server with a sudo user. Change the IP address and `ansible_ssh_user` of the `production` 
+host to reflect your server in the `provisioning/ansible_hosts` file.
+
+Add your public key to the `~/.ssh/authorized_hosts` file when logged in a your sudo user.
 
 Execute the following command from the root of this project to provision the server:
-`ansible-playbook -i provisioning/ansible_hosts provisioning/playbook.yml`
 
-Further modifications may be necessary such as the target host located in the `provisioning/ansible_hosts` file.
+`ansible-playbook -i provisioning/ansible_hosts --limit production provisioning/playbook.yml`
 
-A Jenkins job should be responsible for logging into the host and executing the `mvn test` command from the root 
+A Jenkins job will be be responsible for executing the `mvn test` command from the root 
 of the project. This should be run as a timed job each Sunday so the reports will be ready for Monday.
-Another job will be responsible for building and deploying code to the server.
+
+Another job will be responsible for building and deploying code.
 
 ## Architecture
 
@@ -75,6 +95,7 @@ Node web server is required to serve the AngularJS application.
 ## Jenkins Jobs
 
 The size guide checker should be run on a remote server each Sunday as a timed job in Jenkins.
-The job should SSH into the server hosting the Maven application and run the `mvn test` command.
+The job should execute the `mvn test` command from the root of this project.
+
 This will be a long running job since the shell will exit when the tests have completed.
 Four clothing categories (e.g. lingerie, men, women, kids) will take approximately 5 hours to test.

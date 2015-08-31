@@ -1,30 +1,44 @@
 ---
-- hosts: prod
+
+- hosts: servers
   sudo: yes
 
   roles:
-    - ansible-jenkins
+
+    - nodesource.node
+    - { role: ansible-jenkins, when: inventory_hostname == 'production' }
 
   tasks:
 
-    - name: Assign jenkins user to the sudo group
-      user: name=jenkins state=present groups="jenkins,sudo"
-
-    - name: Install server packages required by project
+    - name: Update application repository cache
       apt: update_cache=yes
-      apt: name=openjdk-7-jdk
-      apt: name=maven
-      apt: name=curl
 
-    - name: Install Node 0.12
-      command: curl -sL 'https://deb.nodesource.com/setup_0.12 | sudo bash -'
-      apt: name=nodejs
+    - name: Install Java 7
+      apt: name=openjdk-7-jdk
+
+    - name: Install Maven
+      apt: name=maven
+
+    - name: Install GruntJS
       npm: name=grunt-cli global=yes
 
-    - name: Ensure applications can be run without sudo password
+    - name: Assign jenkins user to the sudo group
+      user: name=jenkins state=present groups="jenkins,sudo"
+      when: inventory_hostname == 'production'
+
+    - name: Install application to enable programs to run without sudo password
       apt: name=libcap2-bin
+
+    - name: Enable NodeJS to be run without sudo password
       command: setcap cap_net_bind_service=+ep /usr/bin/nodejs
+
+    - name: Enable pgrep to be run without sudo password
       command: setcap cap_net_bind_service=+ep /usr/bin/pgrep
+      when: inventory_hostname == 'production'
 
     - name: Create directory for the source code to live
-      file: path=/var/www/SizeGuideTester state=directory owner=jenkins group=jenkins mode=0775 recurse=yes
+      file: path=/var/www/SizeGuideTester state=directory
+
+    - name: Set the permissions of the source code directory
+      file: path=/var/www/SizeGuideTester state=present owner=jenkins group=jenkins mode=0775 recurse=yes
+      when: inventory_hostname == 'production'
